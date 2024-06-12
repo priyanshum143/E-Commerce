@@ -6,7 +6,7 @@ import { HomeCarouselData } from './HomeCarouselData'
 const HomeCarousel = () => {
     const items = [1,1,1,1,1].map((item)=>
         <img
-            className='cursor-pointer'
+            className='cursor-pointer -z-10'
             role='presentation'
             src={item.image}
             alt=""

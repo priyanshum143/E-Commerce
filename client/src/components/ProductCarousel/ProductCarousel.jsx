@@ -4,7 +4,7 @@ import ProductCard from '../ProductCards/ProductCard';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Button } from '@mui/material';
 
-const ProductCarousel = () => {
+const ProductCarousel = ({ data, sectionName }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const responsive = {
@@ -14,15 +14,15 @@ const ProductCarousel = () => {
     };
 
     const slidePrev = () => setActiveIndex(activeIndex - 1);
-
     const slideNext = () => setActiveIndex(activeIndex + 1);
 
-    const syncActiveIndex = ({item}) => setActiveIndex(item);
+    const syncActiveIndex = ({ item }) => setActiveIndex(item)
 
-    const items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1].map((item)=> <ProductCard/>)
+    const items = data.slice(0, 10).map((item) => <ProductCard product={item}/>);
 
     return (
-        <div className=''>
+        <div className='border'>
+            <h2 className='text-2xl font-extrabold text-gray-800 py-5'>{sectionName}</h2>
             <div className='relative p-5'>
                 <AliceCarousel
                     items={items}
@@ -50,7 +50,7 @@ const ProductCarousel = () => {
                     <ArrowBackIosIcon sx={{transform: 'rotate(90deg)', color: 'black'}}/>
                 </Button>}
 
-                <Button
+                {activeIndex !== 0 && <Button
                     className='z-50'
                     variant='contained'
                     sx={{
@@ -65,7 +65,7 @@ const ProductCarousel = () => {
                     onClick={slidePrev}
                 >
                     <ArrowBackIosIcon sx={{transform: 'rotate(90deg)', color: 'black'}}/>
-                </Button>
+                </Button>}
             </div>
         </div>
     )
