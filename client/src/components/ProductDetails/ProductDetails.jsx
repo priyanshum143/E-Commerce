@@ -3,6 +3,8 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { Radio, RadioGroup } from '@headlessui/react'
 import { Rating, Button, Grid, Box, LinearProgress } from '@mui/material'
 import ProductReviewCard from './ProductReviewCard'
+import { mens_kurta } from '../../Data/mens_kurta'
+import ProductCard from '../ProductCard/ProductCard'
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -93,7 +95,8 @@ export default function ProductDetails() {
                         </li>
                     </ol>
                 </nav>
-
+                
+                {/* Image and Info */}
                 <section className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 px-4 pt-10'>
                     {/* Image gallery */}
                     <div className="flex flex-col items-center">
@@ -254,7 +257,7 @@ export default function ProductDetails() {
                         <Grid container spacing={7}>
                             <Grid item xs={7}>
                                 <div className='space-y-5'>
-                                    {[1, 1, 1].map((item) =><ProductReviewCard/>)};
+                                    {[1, 1, 1].map((item) =><ProductReviewCard/>)}
                                 </div>
                             </Grid>
 
@@ -324,10 +327,10 @@ export default function ProductDetails() {
 
                 {/* Similar Products */}
                 <section className='pt-10'>
-                    <h1>Similar Products</h1>
+                    <h1 className='font-semibold text-lg pb-4'>Similar Products</h1>
 
-                    <div className=''>
-                        
+                    <div className='flex flex-wrap space-y-5'>
+                        {mens_kurta.map((item) => <ProductCard product={item}/>)}
                     </div>
                 </section>
             </div>
