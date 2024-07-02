@@ -21,7 +21,7 @@ const createUser = async(userData) => {
     }
 };
 
-const findUserByID = async(userID) => {
+const getUserByID = async(userID) => {
     try {
         const user = await Users.findById({userID}).populate("address");
         if(!user) {
@@ -34,7 +34,7 @@ const findUserByID = async(userID) => {
     }
 };
 
-const findUserByEmail = async(email) => {
+const getUserByEmail = async(email) => {
     try {
         const user = await Users.findOne({email});
         if(!user) {
@@ -51,7 +51,7 @@ const getUserByToken = async(token) => {
     try {
         const userID = jwtProvider.getUserIDFromToken(token);
 
-        const user = await findUserByID(userID);
+        const user = await getUserByID(userID);
         if(!user) {
             throw new Error("User not found");
         }
@@ -71,4 +71,4 @@ const getAllUsers = async() => {
     }
 };
 
-module.exports = {createUser, findUserByID, findUserByEmail, getUserByToken, getAllUsers};
+module.exports = {createUser, getUserByID, getUserByEmail, getUserByToken, getAllUsers};
