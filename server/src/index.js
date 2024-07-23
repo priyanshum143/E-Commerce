@@ -13,7 +13,6 @@ const authRoutes = require("./routes/auth-routes");
 app.use("/auth", authRoutes);
 
 const userRoutes = require("./routes/user-routes");
-app.use("/users", userRoutes);
-
+app.use("/api/users", userRoutes);
 
 module.exports = app;

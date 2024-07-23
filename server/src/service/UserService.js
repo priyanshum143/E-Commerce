@@ -23,7 +23,8 @@ const createUser = async(userData) => {
 
 const getUserByID = async(userID) => {
     try {
-        const user = await Users.findById({userID}).populate("address");
+        const user = await Users.findById(userID);
+        // .populate("address");
         if(!user) {
             throw new Error("User not found");
         }
@@ -50,12 +51,10 @@ const getUserByEmail = async(email) => {
 const getUserByToken = async(token) => {
     try {
         const userID = jwtProvider.getUserIDFromToken(token);
-
         const user = await getUserByID(userID);
         if(!user) {
             throw new Error("User not found");
         }
-
         return user;
     } catch (error) {
         throw new Error(error.message);

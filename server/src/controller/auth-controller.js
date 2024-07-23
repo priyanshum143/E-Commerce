@@ -1,4 +1,4 @@
-const userService = require("../service/Users");
+const userService = require("../service/UserService");
 const jwtProvider = require("../config/jwtProvider");
 const bcrypt = require('bcrypt');
 const cartService = require("../service/cartService");

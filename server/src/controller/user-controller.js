@@ -1,4 +1,4 @@
-const userService = require("../service/Users")
+const userService = require("../service/UserService")
 
 const getUserProfile = async(req, res) => {
     try {
@@ -17,7 +17,7 @@ const getUserProfile = async(req, res) => {
 const getAllUsers = async(req, res) => {
     try {
         const users = await userService.getAllUsers();
-        return users;
+        return res.json(users);
     } catch (error) {
         return res.status(500).send({error: error.message});
     }
