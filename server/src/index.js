@@ -15,4 +15,28 @@ app.use("/auth", authRoutes);
 const userRoutes = require("./routes/user-routes");
 app.use("/api/users", userRoutes);
 
+const userProductRoutes = require("./routes/user-product-routes");
+app.use("/api/products", userProductRoutes);
+
+const adminProductRoutes = require("./routes/admin-product-routes");
+app.use("/api/admin/products", adminProductRoutes);
+
+const cartRoutes = require("./routes/cart-routes");
+app.use("/api/cart", cartRoutes);
+
+const cartItemRoutes = require("./routes/cartItems-routes");
+app.use("/api/cart_items", cartItemRoutes);
+
+const adminOrderRoutes = require("./routes/admin-order-routes");
+app.use("/api/admin/orders", adminOrderRoutes);
+
+const orderRoutes = require("./routes/order-routes");
+app.use("/api/orders", orderRoutes);
+
+const reviewRoutes = require("./routes/review-routes");
+app.use("/api/reviews", reviewRoutes);
+
+const ratingRoutes = require("./routes/rating-routes");
+app.use("/api/ratings", ratingRoutes);
+
 module.exports = app;
