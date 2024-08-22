@@ -8,6 +8,7 @@ const register = async(req, res) => {
         const user = await userService.createUser(req.body);
         const jwt = jwtProvider.generateToken(user._id);
 
+        console.log(user)
         await cartService.createCart(user);
 
         return res.status(200).send({jwt, message: "Registered Sucessfully"});

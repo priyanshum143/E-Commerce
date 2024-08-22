@@ -2,7 +2,7 @@ const Products = require("../models/Products")
 const Category = require("../models/Category");
 
 async function createProduct(reqData) {
-    let topLevel = await Category.fidnOne({name: reqData.topLevelCategory});
+    let topLevel = await Category.findOne({name: reqData.topLevelCategory});
     if(!topLevel) {
         topLevel = new Category({
             name: reqData.topLevelCategory,
@@ -15,7 +15,7 @@ async function createProduct(reqData) {
         secondLevel = new Category({
             name: reqData.secondLevelCategory,
             level: 2,
-            parentCategory: topLevel._id,
+            parentCategory: topLevel?._id,
         });
     }
 
@@ -24,11 +24,11 @@ async function createProduct(reqData) {
         secondLevel = new Category({
             name: reqData.thirdLevelCategory,
             level: 3,
-            parentCategory: seconddLevel._id,
+            parentCategory: secondLevel?._id,
         });
     }
 
-    const product = new Product({
+    const product = new Products({
         title: reqData.title,
         color: reqData.color,
         description: reqData.description,
@@ -38,7 +38,7 @@ async function createProduct(reqData) {
         price: reqData.price,
         sizes: reqData.sizes,
         quantity: reqData.quantity,
-        category: thirdLevel._id,
+        category: thirdLevel?._id,
     })
 
     return await product.save();
