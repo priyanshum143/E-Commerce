@@ -21,26 +21,26 @@ async function createOrder(user, shippingAddress) {
     const orderItems = [];
 
     for(const item of cart.cartItems) {
-        const orderItem = new OrderItems({
-            price: item.totalPrice,
+        let orderItem = new OrderItems({
+            price: item.price,
             product: item.product,
             quantity: item.quantity,
             size: item.size,
-            userId: item.userId,
+            userId: item.user,
             discountedPrice: item.discountedPrice,
         });
 
         orderItem = await orderItem.save();
-        OrderItems.push(orderItem);
+        orderItems.push(orderItem);
     }
 
-    const createdOrder = new Order({
+    let createdOrder = new Order({
         user,
         orderItems,
         totalPrice: cart.totalPrice,
         totalDiscountedPrice: cart.totalDiscountedPrice,
         discount: cart.discount,
-        totalItems: cart.totalItems,
+        totalItem: cart.totalItem,
         shippingAddress: address,
     });
 
@@ -91,7 +91,7 @@ async function findOrderById(orderId) {
 
 async function userOrderHistory(userId) {
     try {
-        const orders = await Order.find({user: userId, orderStatus: "PLACED"})
+        const orders = await Order.find({user: userId, orderStatus: "PENDING"})
             .populate({path: "orderItems", populate: {path: "product"}}).lean();
 
         return orders;

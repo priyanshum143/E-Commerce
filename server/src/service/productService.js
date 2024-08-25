@@ -8,6 +8,8 @@ async function createProduct(reqData) {
             name: reqData.topLevelCategory,
             level: 1,
         });
+
+        await topLevel.save();
     }
 
     let secondLevel = await Category.findOne({name: reqData.secondLevelCategory, parentCategory: topLevel._id});
@@ -17,6 +19,8 @@ async function createProduct(reqData) {
             level: 2,
             parentCategory: topLevel?._id,
         });
+
+        await secondLevel.save();
     }
 
     let thirdLevel = await Category.findOne({name: reqData.thirdLevelCategory, parentCategory: secondLevel._id});
@@ -26,6 +30,8 @@ async function createProduct(reqData) {
             level: 3,
             parentCategory: secondLevel?._id,
         });
+
+        await thirdLevel.save();
     }
 
     const product = new Products({
@@ -45,7 +51,6 @@ async function createProduct(reqData) {
 };
 
 async function deleteProduct(productId) {
-    const product = await Product.findProductById(productId);
     await Products.findByIdAndDelete(productId);
     return "Product deleted";
 };
@@ -55,7 +60,7 @@ async function updateProduct(productId, reqData) {
 };
 
 async function findProductById(productId) {
-    const product = await Products.findById(id).populate("category").exec();
+    const product = await Products.findById(productId).populate("category").exec();
     if(!product) {
         throw new Error("product not found with the given id: ", productId);
     }

@@ -16,7 +16,7 @@ const userRoutes = require("./routes/user-routes");
 app.use("/api/users", userRoutes); // Done
 
 const userProductRoutes = require("./routes/user-product-routes");
-app.use("/api/products", userProductRoutes);
+app.use("/api/products", userProductRoutes); // Done
 
 const adminProductRoutes = require("./routes/admin-product-routes");
 app.use("/api/admin/products", adminProductRoutes); // Partially done
@@ -25,13 +25,13 @@ const cartRoutes = require("./routes/cart-routes");
 app.use("/api/cart", cartRoutes); // Done
 
 const cartItemRoutes = require("./routes/cartItems-routes");
-app.use("/api/cart_items", cartItemRoutes);
+app.use("/api/cart_items", cartItemRoutes); // Done
 
 const adminOrderRoutes = require("./routes/admin-order-routes");
 app.use("/api/admin/orders", adminOrderRoutes);
 
 const orderRoutes = require("./routes/order-routes");
-app.use("/api/orders", orderRoutes);
+app.use("/api/orders", orderRoutes); // Done
 
 const reviewRoutes = require("./routes/review-routes");
 app.use("/api/reviews", reviewRoutes);
