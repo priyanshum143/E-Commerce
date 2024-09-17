@@ -46,7 +46,7 @@ const Products = new mongoose.Schema({
         },
     ],
 
-    imageURL: {
+    imageUrl: {
         type: String,
     },
 

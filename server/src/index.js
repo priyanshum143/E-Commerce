@@ -19,7 +19,7 @@ const userProductRoutes = require("./routes/user-product-routes");
 app.use("/api/products", userProductRoutes); // Done
 
 const adminProductRoutes = require("./routes/admin-product-routes");
-app.use("/api/admin/products", adminProductRoutes); // Partially done
+app.use("/api/admin/products", adminProductRoutes); // Done
 
 const cartRoutes = require("./routes/cart-routes");
 app.use("/api/cart", cartRoutes); // Done

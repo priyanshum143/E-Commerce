@@ -4,7 +4,8 @@ const productController = require("../controller/product-controller");
 const { authenticate } = require("../middleware/authenticate");
 
 router.post("/", authenticate, productController.createProduct); //Done
-router.post("/create", authenticate, productController.createMultipleProducts);
+router.post("/create", authenticate, productController.createMultipleProducts); // Done
+router.delete("/all", authenticate, productController.deleteAll); // Done
 router.delete("/:id", authenticate, productController.deleteProduct); // Done
 router.put("/:id", authenticate, productController.updateProduct); // Done
 

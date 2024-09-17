@@ -1,4 +1,5 @@
 const productService = require("../service/productService");
+const Products = require("../models/Products");
 
 const createProduct = async(req, res) => {
     try {
@@ -31,6 +32,11 @@ const updateProduct = async(req, res) => {
     }
 };
 
+const deleteAll = async() => {
+    await Products.deleteMany({});
+    console.log("deleted")
+}
+
 const findProductById = async(req, res) => {
     const productId = req.params.id;
     
@@ -53,8 +59,8 @@ const getAllProducts = async(req, res) => {
 
 const createMultipleProducts = async(req, res) => {
     try {
-        const products = await productService.createMultipleProduct(req.body);
-        return res.status(201).send("Products created successfully", products);
+        await productService.createMultipleProduct(req.body);
+        return res.status(201).send("Products created successfully");
     } catch (error) {
         return res.status(500).send({error: error.message});
     }
@@ -67,4 +73,5 @@ module.exports = {
     getAllProducts,
     createMultipleProducts,
     findProductById,
+    deleteAll
 }
