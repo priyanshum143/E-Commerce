@@ -69,7 +69,8 @@ async function findProductById(productId) {
 };
 
 async function getAllProducts(reqQuery) {
-    let {category, color, sizes, minPrice, maxPrice, minDiscount, sort, stock, pageNum, pageSize} = reqQuery;
+    let {category, color, sizes, minPrice, maxPrice, minDiscount, sort, stock, pageNumber, pageSize} = reqQuery;
+    console.log(reqQuery)
     pageSize = pageSize || 10;
 
     let query = Products.find().populate("category");
@@ -117,13 +118,13 @@ async function getAllProducts(reqQuery) {
     }
 
     const totalProducts = await Products.countDocuments(query);
-    const skip = (pageNum - 1) * pageSize;
+    const skip = (pageNumber) * pageSize;
     query = query.skip(skip).limit(pageSize);
 
     const products = await query.exec();
     const totalPages = Math.ceil(totalProducts / pageSize);
 
-    return {content: products, currentPage: pageNum, totalPages: totalPages};
+    return {content: products, currentPage: pageNumber, totalPages: totalPages};
 };
 
 async function createMultipleProduct(products) {

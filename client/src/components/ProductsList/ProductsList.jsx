@@ -21,6 +21,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { findProducts } from '../../state/Product/Action'
 import { useDispatch, useSelector } from 'react-redux';
+import Pagination from '@mui/material/Pagination';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -72,6 +73,15 @@ export default function ProductsList() {
         searchParams.set(sectionId, e.target.value);
 
         const query = searchParams.toString();
+        navigate({search:`?${query}`});
+    }
+
+    const handlePaginationChange = (event, value) => {
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.set("page", value);
+        console.log(searchParams)
+        const query = searchParams.toString();
+        console.log(query)
         navigate({search:`?${query}`});
     }
 
@@ -400,6 +410,16 @@ export default function ProductsList() {
                                     {product.products?.content?.map((item) => <ProductCard product={item} />)}
                                 </div>
                             </div>
+                        </div>
+                    </section>
+
+                    <section className='w-full px=[3.6rem]'>
+                        <div className='px-4 py-5 flex justify-center'>
+                            <Pagination
+                                count={product.products?.totalPages}
+                                color="secondary"
+                                onChange={handlePaginationChange}
+                            />
                         </div>
                     </section>
                 </main>
