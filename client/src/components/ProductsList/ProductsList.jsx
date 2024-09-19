@@ -33,7 +33,7 @@ export default function ProductsList() {
     const navigate = useNavigate();
     const param = useParams()
     const dispatch = useDispatch();
-    const { product } = useSelector(store => store)
+    const { products } = useSelector(store => store)
 
     const decodedQueryString = decodeURIComponent(location.search);
     const searchParams = new URLSearchParams(decodedQueryString);
@@ -407,7 +407,7 @@ export default function ProductsList() {
                             {/* Product grid */}
                             <div className="lg:col-span-4 w-full">
                                 <div className='flex flex-wrap justify-center bg-white py-5'>
-                                    {product.products?.content?.map((item) => <ProductCard product={item} />)}
+                                    {products.products?.content?.map((item) => <ProductCard product={item} />)}
                                 </div>
                             </div>
                         </div>
@@ -416,7 +416,7 @@ export default function ProductsList() {
                     <section className='w-full px=[3.6rem]'>
                         <div className='px-4 py-5 flex justify-center'>
                             <Pagination
-                                count={product.products?.totalPages}
+                                count={products.products?.totalPages}
                                 color="secondary"
                                 onChange={handlePaginationChange}
                             />

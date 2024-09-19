@@ -12,7 +12,7 @@ async function createOrder(user, shippingAddress) {
         address = new Address(shippingAddress);
         address.user = user;
         await address.save();
-
+        
         user.address.push(address);
         await user.save();
     }

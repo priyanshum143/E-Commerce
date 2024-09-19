@@ -45,6 +45,7 @@ async function createProduct(reqData) {
         sizes: reqData.sizes,
         quantity: reqData.quantity,
         category: thirdLevel?._id,
+        discountPresent: reqData.discountPresent,
     })
 
     return await product.save();

@@ -4,10 +4,15 @@ import { useNavigate } from 'react-router-dom'
 
 const ProductCard = ({product}) => {
     const navigate = useNavigate();
+    const { title, brand, imageUrl, price, discountedPrice, discountPersent, color } = product;
+
+    const handleNavigate = () => {
+        navigate(`/productlist/${product?._id}`);
+    }
 
     return (
         <div
-            onClick={() => navigate(`/productlist/${5}`)}
+            onClick={() => navigate(`/productlist/${product?._id}`)}
             className='productCard w-[15rem] m-3 transition-all cursor-pointer'
         >
             <div className='h-[20rem]'>
