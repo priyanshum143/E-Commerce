@@ -39,4 +39,7 @@ app.use("/api/reviews", reviewRoutes);
 const ratingRoutes = require("./routes/rating-routes");
 app.use("/api/ratings", ratingRoutes);
 
+const paymentRoutes = require("./routes/payment-routes");
+app.use("/api/payments", paymentRoutes);
+
 module.exports = app;
