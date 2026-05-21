@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
-import { Grid, TextField, Button } from '@mui/material'
+import React from 'react'
+import { Grid, TextField, Button, Alert } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getUser, login } from '../state/Auth/Action';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../state/Auth/Action';
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { auth } = useSelector(store => store);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,6 +24,11 @@ const LoginForm = () => {
 
     return (
         <div>
+            {auth.error && (
+                <Alert severity="error" sx={{ mb: 2 }}>
+                    {auth.error}
+                </Alert>
+            )}
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>

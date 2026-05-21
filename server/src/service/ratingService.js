@@ -7,7 +7,7 @@ async function createRating(reqData, user) {
     const rating = new Ratings({
         user: user._id,
         product: product._id,
-        rating: reqData.rating,
+        ratings: reqData.ratings ?? reqData.rating,
         createdAt: new Date(),
     });
 

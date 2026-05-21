@@ -35,17 +35,17 @@ async function createOrder(user, shippingAddress) {
     }
 
     let createdOrder = new Order({
-        user,
+        user: user._id,
         orderItems,
         totalPrice: cart.totalPrice,
         totalDiscountedPrice: cart.totalDiscountedPrice,
         discount: cart.discount,
         totalItem: cart.totalItem,
-        shippingAddress: address,
+        shippingAddress: address._id,
     });
 
     createdOrder = await createdOrder.save();
-    return createdOrder;
+    return findOrderById(createdOrder._id);
 };
 
 async function placeOrder(orderId) {

@@ -37,6 +37,7 @@ export default function Navigation() {
     };
 
     const handleOpen = () => {
+        navigate("/login");
         setOpenAuthModal(true);
     };
     const handleClose = () => {

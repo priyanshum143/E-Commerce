@@ -25,12 +25,12 @@ export const register = (userData) => async(dispatch) => {
 
         if(user.jwt) {
             localStorage.setItem("jwt", user.jwt)
+            dispatch(registerSuccess(user.jwt));
+            dispatch(getUser(user.jwt));
         }
-
-        console.log(user);
-        dispatch(registerSuccess(user.jwt));
     } catch (error) {
-        dispatch(registerFailure(error.message));
+        const message = error.response?.data?.error || error.response?.data?.message || error.message;
+        dispatch(registerFailure(message));
     }
 }
 
@@ -47,12 +47,12 @@ export const login = (userData) => async(dispatch) => {
 
         if(user.jwt) {
             localStorage.setItem("jwt", user.jwt)
+            dispatch(loginSuccess(user.jwt));
+            dispatch(getUser(user.jwt));
         }
-
-        console.log(user);
-        dispatch(loginSuccess(user.jwt));
     } catch (error) {
-        dispatch(loginFailure(error.message));
+        const message = error.response?.data?.error || error.response?.data?.message || error.message;
+        dispatch(loginFailure(message));
     }
 }
 

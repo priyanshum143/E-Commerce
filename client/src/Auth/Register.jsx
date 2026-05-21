@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Grid, TextField, Button } from '@mui/material'
+import { Grid, TextField, Button, Alert } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, register } from '../state/Auth/Action'
@@ -33,6 +33,11 @@ const Register = () => {
 
     return (
         <div>
+            {auth.error && (
+                <Alert severity="error" sx={{ mb: 2 }}>
+                    {auth.error}
+                </Alert>
+            )}
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
